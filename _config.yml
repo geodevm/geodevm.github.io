@@ -11,8 +11,8 @@ locale                   : "en-US"
 site_theme               : "default" # Currently available options are "default", "air"
 title                    : "Geoff's Homepage"
 title_separator          : "-"
-name                     : &name "Your Name"
-description              : &description "Your Name's academic portfolio"   # Update this with a general description of your site, this is the default if not overridden by a page
+name                     : &name "Geoffrey D. Miller"
+description              : &description "Geoffrey D. Miller's academic portfolio"   # Update this with a general description of your site, this is the default if not overridden by a page
 url                      : https://geodevm.github.io # The base hostname & protocol for your site e.g. "https://[your GitHub username].github.io",
                                                            # or if you already have some other page hosted on Github then use "https://[your GitHub username].github.io/[Your Repo Name]"
 baseurl                  : "" # the subpath of your site, e.g. "/blog"
@@ -26,7 +26,7 @@ author:
   avatar           : "profile.png"
   name             : "Dr. Geoffrey D. Miller"
   pronouns         : # example: "she/her"  
-  bio              : "Wildlife ecologist specializing in interactions between carnivores across spatial scales."
+  bio              : "Wildlife ecologist specializing in animal movement and species interactions between carnivores across spatial scales."
   location         : "Saint Paul, Minnesota"
   employer         : "University of Minnesota"
   uri              : # URL
@@ -54,7 +54,7 @@ author:
 
   # Social media
   artstation       : # Username
-  bluesky          : "bsky.app" # Replace this with you Bluesky username
+  bluesky          : # Replace this with you Bluesky username
   facebook         : # Username
   flickr           : # Username
   foursquare       : # Username
