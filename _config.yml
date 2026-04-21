@@ -23,7 +23,7 @@ repository               : "academicpages/academicpages.github.io"
 #               Additional customization can be done by editing /_includes/author-profile.html
 author:
   # Biographic information
-  avatar           : "profile_2.png"
+  avatar           : "profile_2.jpg"
   name             : "Geoffrey D. Miller, PhD"
   pronouns         : # example: "she/her"  
   bio              : "Wildlife ecologist specializing in animal movement and species interactions between carnivores across spatial scales."
