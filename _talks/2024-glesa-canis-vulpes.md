@@ -2,9 +2,9 @@
 title: "Who’s the top dog? Movement analyses suggest humans facilitate spatial partitioning in competing urban canids"
 collection: talks
 type: "Oral presentation"
-permalink: /talks/2023-glesa-canis-vulpes
+permalink: /talks/2024-glesa-canis-vulpes
 venue: "Great Lakes Chapter of the Ecological Society of America"
-date: 2023-08-01
+date: 2024-04-06
 location: "Kalamazoo, MI, USA"
 ---
 
