@@ -21,7 +21,7 @@
       {{ m.outlet }}, {{ m.date | date: "%Y" }}
     </p>
     <h2 class="media-item__title">
-      {% if m.url != blank %}<a href="{{ m.url }}">{{ m.title }}</a>{% else %}{{ m.title }}{% endif %}
+      {% if m.link != blank %}<a href="{{ m.link }}">{{ m.title }}</a>{% else %}{{ m.title }}{% endif %}
     </h2>
     {% if m.award != blank %}
       <p class="media-item__award"><i class="fas fa-award" aria-hidden="true"></i> {{ m.award }}</p>
@@ -33,8 +33,8 @@
       <blockquote class="media-item__quote">{{ m.quote }}</blockquote>
     {% endif %}
     <div class="media-item__actions">
-      {% if m.url != blank %}
-        <a class="media-btn" href="{{ m.url }}">{{ m.link_text | default: verb }}</a>
+      {% if m.link != blank %}
+        <a class="media-btn" href="{{ m.link }}">{{ m.link_text | default: verb }}</a>
       {% endif %}
       {% if m.embed != blank %}
         <button type="button" class="media-btn media-btn--play" aria-expanded="false"
