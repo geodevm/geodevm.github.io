@@ -151,7 +151,7 @@ author_profile: true
 
 <script>
   document.addEventListener("DOMContentLoaded", function () {
-    // Filter buttons: show only items of the chosen format.
+    /* Filter buttons: show only items of the chosen format. */
     var buttons = document.querySelectorAll(".media-filter button");
     var items = document.querySelectorAll(".media-list .media-item");
     var status = document.getElementById("media-filter-status");
@@ -169,13 +169,12 @@ author_profile: true
       });
     });
 
-    // "Play here" buttons load the video or audio player only when clicked,
-    // so the page stays fast and outside players don't load for every visitor.
+    /* "Play here" buttons load the player only when clicked, so the page stays fast. */
     document.querySelectorAll(".media-btn--play").forEach(function (btn) {
       btn.addEventListener("click", function () {
         var player = btn.closest(".media-item__body").querySelector(".media-item__player");
         if (btn.getAttribute("aria-expanded") === "true") {
-          player.innerHTML = "";   // removing the player also stops playback
+          player.innerHTML = "";   /* removing the player also stops playback */
           player.hidden = true;
           btn.setAttribute("aria-expanded", "false");
           btn.textContent = "Play here";
