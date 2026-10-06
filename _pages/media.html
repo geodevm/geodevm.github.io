@@ -1,0 +1,198 @@
+---
+layout: archive
+title: "In the Media"
+permalink: /media/
+author_profile: true
+---
+
+{% comment %}
+  Each appearance is its own file in the _media/ folder.
+  To add one, copy an existing file there and edit it. Nothing on this page needs to change.
+{% endcomment %}
+
+{% assign items = site.media | sort: "date" | reverse %}
+{% assign featured = items | where_exp: "i", "i.featured == true" %}
+{% assign rest = items | where_exp: "i", "i.featured != true" %}
+{% assign n_print = rest | where: "format", "print" | size %}
+{% assign n_audio = rest | where: "format", "audio" | size %}
+{% assign n_video = rest | where: "format", "video" | size %}
+
+<style>
+  .media-intro { margin-bottom: 1.5em; }
+
+  .media-item {
+    display: grid;
+    grid-template-columns: 2.25em 1fr;
+    gap: 0 0.9em;
+    padding: 1.1em 0;
+    border-bottom: 1px solid var(--global-border-color);
+  }
+  .media-item[hidden], .media-item__player[hidden] { display: none !important; }
+
+  .media-item__icon {
+    font-size: 1.3em;
+    line-height: 1.4;
+    color: var(--global-link-color);
+    text-align: center;
+  }
+  .media-item__source {
+    margin: 0;
+    font-size: 0.8em;
+    color: var(--global-text-color-light);
+  }
+  .media-item__format {
+    display: inline-block;
+    margin-right: 0.4em;
+    padding: 0 0.45em;
+    border: 1px solid var(--global-border-color);
+    border-radius: 3px;
+  }
+  .media-item__title {
+    margin: 0.25em 0 0.3em;
+    font-size: 1.1em;
+    line-height: 1.3;
+  }
+  .media-item__award {
+    margin: 0 0 0.3em;
+    font-size: 0.85em;
+    font-weight: bold;
+  }
+  .media-item__desc { margin: 0 0 0.5em; font-size: 0.9em; }
+  .media-item__quote { margin: 0.4em 0 0.6em; font-size: 0.9em; }
+
+  .media-item__actions {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    gap: 0.5em 0.9em;
+    font-size: 0.85em;
+  }
+  .media-btn {
+    font: inherit;
+    cursor: pointer;
+    padding: 0.25em 0.8em;
+    border: 1px solid var(--global-link-color);
+    border-radius: 3px;
+    background: transparent;
+    color: var(--global-link-color);
+    text-decoration: none;
+  }
+  .media-btn:hover, .media-btn--play[aria-expanded="true"] {
+    background: var(--global-link-color);
+    color: var(--global-bg-color);
+  }
+  .media-btn:focus-visible, .media-filter button:focus-visible {
+    outline: 2px solid var(--global-link-color);
+    outline-offset: 2px;
+  }
+  .media-item__note, .media-item__archive { color: var(--global-text-color-light); }
+
+  .media-item__player { margin-top: 0.8em; }
+  .media-item__player iframe { display: block; width: 100%; border: 0; border-radius: 4px; }
+  .media-item__player--video iframe { aspect-ratio: 16 / 9; height: auto; }
+  .media-item__player--audio iframe { height: 160px; }
+  .media-item__player--print iframe { height: 500px; }
+
+  /* The featured appearance sits above the list with a little more room. */
+  .media-item--featured {
+    padding: 1.2em 1.2em 1.3em;
+    margin-bottom: 1.5em;
+    border: 1px solid var(--global-border-color);
+    border-radius: 4px;
+    background: var(--global-footer-bg-color);
+  }
+  .media-item--featured .media-item__title { font-size: 1.35em; }
+
+  .media-filter {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.4em;
+    margin: 0 0 0.5em;
+    font-size: 0.85em;
+  }
+  .media-filter button {
+    font: inherit;
+    cursor: pointer;
+    padding: 0.2em 0.8em;
+    border: 1px solid var(--global-border-color);
+    border-radius: 999px;
+    background: transparent;
+    color: var(--global-text-color);
+  }
+  .media-filter button[aria-pressed="true"] {
+    border-color: var(--global-link-color);
+    background: var(--global-link-color);
+    color: var(--global-bg-color);
+  }
+  .media-filter__status {
+    position: absolute; width: 1px; height: 1px; overflow: hidden; clip: rect(0 0 0 0);
+  }
+</style>
+
+<p class="media-intro">Interviews and stories about my research on urban coyotes and red foxes in the Twin Cities.</p>
+
+{% for item in featured %}
+  {% include media-item.html item=item featured="yes" %}
+{% endfor %}
+
+<div class="media-filter" role="group" aria-label="Filter by format">
+  <button type="button" data-filter="all" aria-pressed="true">All</button>
+  {% if n_print > 0 %}<button type="button" data-filter="print" aria-pressed="false"><i class="fas fa-newspaper" aria-hidden="true"></i> Print ({{ n_print }})</button>{% endif %}
+  {% if n_audio > 0 %}<button type="button" data-filter="audio" aria-pressed="false"><i class="fas fa-headphones" aria-hidden="true"></i> Audio ({{ n_audio }})</button>{% endif %}
+  {% if n_video > 0 %}<button type="button" data-filter="video" aria-pressed="false"><i class="fas fa-circle-play" aria-hidden="true"></i> Video ({{ n_video }})</button>{% endif %}
+</div>
+<p id="media-filter-status" class="media-filter__status" aria-live="polite"></p>
+
+<div class="media-list">
+  {% for item in rest %}
+    {% include media-item.html item=item %}
+  {% endfor %}
+</div>
+
+<script>
+  document.addEventListener("DOMContentLoaded", function () {
+    // Filter buttons: show only items of the chosen format.
+    var buttons = document.querySelectorAll(".media-filter button");
+    var items = document.querySelectorAll(".media-list .media-item");
+    var status = document.getElementById("media-filter-status");
+    buttons.forEach(function (b) {
+      b.addEventListener("click", function () {
+        var f = b.getAttribute("data-filter");
+        var shown = 0;
+        buttons.forEach(function (x) { x.setAttribute("aria-pressed", x === b ? "true" : "false"); });
+        items.forEach(function (it) {
+          var show = f === "all" || it.getAttribute("data-format") === f;
+          it.hidden = !show;
+          if (show) { shown++; }
+        });
+        status.textContent = "Showing " + shown + (shown === 1 ? " item" : " items");
+      });
+    });
+
+    // "Play here" buttons load the video or audio player only when clicked,
+    // so the page stays fast and outside players don't load for every visitor.
+    document.querySelectorAll(".media-btn--play").forEach(function (btn) {
+      btn.addEventListener("click", function () {
+        var player = btn.closest(".media-item__body").querySelector(".media-item__player");
+        if (btn.getAttribute("aria-expanded") === "true") {
+          player.innerHTML = "";   // removing the player also stops playback
+          player.hidden = true;
+          btn.setAttribute("aria-expanded", "false");
+          btn.textContent = "Play here";
+          return;
+        }
+        var frame = document.createElement("iframe");
+        frame.src = btn.getAttribute("data-embed");
+        frame.title = btn.getAttribute("data-title");
+        frame.setAttribute("allow", "autoplay; encrypted-media; picture-in-picture; fullscreen");
+        frame.setAttribute("allowfullscreen", "");
+        if (btn.getAttribute("data-height")) { frame.style.height = btn.getAttribute("data-height") + "px"; }
+        player.className = "media-item__player media-item__player--" + btn.getAttribute("data-kind");
+        player.appendChild(frame);
+        player.hidden = false;
+        btn.setAttribute("aria-expanded", "true");
+        btn.textContent = "Close player";
+      });
+    });
+  });
+</script>

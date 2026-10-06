@@ -1,0 +1,53 @@
+{% comment %}
+  One entry on the In the Media page. Called from _pages/media.html.
+  Reads its content from a file in the _media/ folder.
+{% endcomment %}
+{% assign m = include.item %}
+{% assign fmt = m.format | default: "print" | downcase %}
+{% case fmt %}
+  {% when "video" %}
+    {% assign icon = "fa-circle-play" %}{% assign verb = "Watch" %}{% assign fmt_label = "Video" %}
+  {% when "audio" %}
+    {% assign icon = "fa-headphones" %}{% assign verb = "Listen" %}{% assign fmt_label = "Audio" %}
+  {% else %}
+    {% assign icon = "fa-newspaper" %}{% assign verb = "Read the story" %}{% assign fmt_label = "Print" %}
+{% endcase %}
+
+<article class="media-item{% if include.featured %} media-item--featured{% endif %}" data-format="{{ fmt }}">
+  <div class="media-item__icon" aria-hidden="true"><i class="fas {{ icon }}"></i></div>
+  <div class="media-item__body">
+    <p class="media-item__source">
+      <span class="media-item__format">{{ fmt_label }}</span>
+      {{ m.outlet }}, {{ m.date | date: "%Y" }}
+    </p>
+    <h2 class="media-item__title">
+      {% if m.url != blank %}<a href="{{ m.url }}">{{ m.title }}</a>{% else %}{{ m.title }}{% endif %}
+    </h2>
+    {% if m.award != blank %}
+      <p class="media-item__award"><i class="fas fa-award" aria-hidden="true"></i> {{ m.award }}</p>
+    {% endif %}
+    {% if m.description != blank %}
+      <p class="media-item__desc">{{ m.description }}</p>
+    {% endif %}
+    {% if m.quote != blank %}
+      <blockquote class="media-item__quote">{{ m.quote }}</blockquote>
+    {% endif %}
+    <div class="media-item__actions">
+      {% if m.url != blank %}
+        <a class="media-btn" href="{{ m.url }}">{{ m.link_text | default: verb }}</a>
+      {% endif %}
+      {% if m.embed != blank %}
+        <button type="button" class="media-btn media-btn--play" aria-expanded="false"
+          data-embed="{{ m.embed }}" data-kind="{{ fmt }}" data-title="{{ m.title | escape }}"
+          {% if m.embed_height %}data-height="{{ m.embed_height }}"{% endif %}>Play here</button>
+      {% endif %}
+      {% if m.starts_at != blank %}
+        <span class="media-item__note">My part starts at {{ m.starts_at }}</span>
+      {% endif %}
+      {% if m.archive_url != blank %}
+        <a class="media-item__archive" href="{{ m.archive_url }}">Archived copy</a>
+      {% endif %}
+    </div>
+    {% if m.embed != blank %}<div class="media-item__player" hidden></div>{% endif %}
+  </div>
+</article>
