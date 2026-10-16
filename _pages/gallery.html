@@ -120,6 +120,26 @@ author_profile: true
     .lightbox__prev { left: 25%; }
     .lightbox__next { right: 25%; }
   }
+  /* Deterrents against casual copying. They stop right-click saving and dragging,
+     not screenshots or a determined visitor. */
+  .gallery-thumb img, .lightbox__img {
+    -webkit-user-select: none;
+    user-select: none;
+    -webkit-user-drag: none;
+    -webkit-touch-callout: none;
+  }
+  .lightbox__frame { position: relative; line-height: 0; max-width: 100%; }
+  .lightbox__shield {
+    position: absolute;
+    inset: 0;
+    background-image: repeating-linear-gradient(
+      45deg,
+      rgba(255, 255, 255, 0.06) 0,
+      rgba(255, 255, 255, 0.06) 1px,
+      transparent 1px,
+      transparent 22px
+    );
+  }
 </style>
 
 {% if photos and photos.size > 0 %}
@@ -131,7 +151,7 @@ author_profile: true
       data-caption="{{ p.caption | escape }}"
       aria-label="Open photo{% if p.alt %}: {{ p.alt | escape }}{% endif %}">
       <img src="{{ '/images/gallery/thumbs/' | append: p.file | relative_url }}"
-        alt="{{ p.alt | escape }}" loading="lazy"
+        alt="{{ p.alt | escape }}" loading="lazy" draggable="false"
         {% if p.focus %}style="object-position: {{ p.focus }};"{% endif %}>
     </button>
   </li>
@@ -143,7 +163,10 @@ author_profile: true
 
 <dialog class="lightbox" aria-label="Photo viewer">
   <div class="lightbox__stage">
-    <img class="lightbox__img" src="" alt="">
+    <div class="lightbox__frame">
+      <img class="lightbox__img" src="" alt="" draggable="false">
+      <div class="lightbox__shield" aria-hidden="true"></div>
+    </div>
     <p class="lightbox__caption"></p>
     <p class="lightbox__count"></p>
   </div>
@@ -163,6 +186,14 @@ author_profile: true
     var prev = box.querySelector(".lightbox__prev");
     var next = box.querySelector(".lightbox__next");
     var current = 0;
+
+    /* Block the right-click menu and dragging on the photos. */
+    document.addEventListener("contextmenu", function (e) {
+      if (e.target.closest(".gallery-thumb, .lightbox__frame")) { e.preventDefault(); }
+    });
+    document.addEventListener("dragstart", function (e) {
+      if (e.target.closest(".gallery-thumb, .lightbox__frame")) { e.preventDefault(); }
+    });
 
     function show(i) {
       current = (i + thumbs.length) % thumbs.length;
