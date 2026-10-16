@@ -1,0 +1,156 @@
+# Content for the CV page (/cv/).
+# Publications, presentations and teaching are NOT listed here. The CV pulls them
+# from the _publications, _talks and _teaching folders, so you only enter them once.
+#
+# PHOTOS: any entry under "experience" can show a photo beside it. Add these lines:
+#   photo: /images/cv/your-photo.jpg     (put the file in images/cv/)
+#   photo_alt: "What the photo shows, for screen readers"
+#   photo_caption: "Optional short caption"
+# Leave the photo lines out and the entry simply runs full width.
+
+pdf: ""   # e.g. /files/Miller_CV.pdf  -- shows a "Download PDF" button when filled in
+
+education:
+  - degree: "PhD, Ecology, Evolution and Behavior"
+    institution: "University of Minnesota"
+    location: "St. Paul, MN"
+    years: "2025"
+    note: "Advisor: James D. Forester"
+  - degree: "BA, Environmental Science, summa cum laude"
+    institution: "Goshen College"
+    location: "Goshen, IN"
+    years: "2019"
+
+experience:
+  - title: "Postdoctoral Associate"
+    org: "University of Minnesota"
+    location: "St. Paul, MN"
+    years: "2025–present"
+    details:
+      - "Estimating white-tailed deer density in an urban park in the Twin Cities Metropolitan Area."
+    photo: /images/cv/deer_2.jpg
+    photo_alt: "White-tailed deer."
+  - title: "Graduate Researcher"
+    org: "University of Minnesota"
+    location: "St. Paul, MN"
+    years: "2019–2025"
+    note: "Advisor: James D. Forester"
+    details:
+      - "Led field work and data analysis for the Twin Cities Coyote and Fox Project, including GPS collaring, stable isotope diet analyses, den studies, and public relations."
+    photo: /images/cv/coyote.jpg
+    photo_alt: "A coyote."
+  - title: "Aquatic Biology Crew Leader"
+    org: "City of Elkhart"
+    location: "Elkhart, IN"
+    years: "2019"
+    note: "Supervisor: Daragh Deegan"
+    details:
+      - "Led backpack and barge electrofishing surveys of fish populations."
+      - "Conducted a study of brown trout diet in the Little Elkhart River."
+    photo: /images/cv/fish.jpg
+    photo_alt: "Me with a brown trout."
+  - title: "Research Technician"
+    org: "Purdue University, Integrated Deer Management Program"
+    location: "Goshen, IN"
+    years: "2019"
+    note: "Supervisor: Pat McGovern"
+    details:
+      - "Set and retrieved trail cameras for winter white-tailed deer surveys in northeastern Indiana."
+    photo: /images/cv/deer.jpg
+    photo_alt: "White-tailed deer."
+  - title: "Research Experience for Undergraduates Fellow"
+    org: "Blandy Experimental Farm, UVA"
+    location: "Boyce, VA"
+    years: "2018"
+    note: "Advisor: Kyle J. Haynes"
+    details:
+      - "Tested host-mediated effects of artificial light at night on the feeding preferences of larval monarch butterflies."
+    photo: /images/cv/monarch.jpg
+    photo_alt: "Monarch caterpillar undergoing choice experiment."
+  - title: "Independent Research in Game Theory"
+    org: "Goshen College"
+    location: "Goshen, IN"
+    years: "2017"
+    note: "Advisor: David Housman"
+    details:
+      - "Modeled the coevolution of yucca moths and yucca plants with strategic and repeated games, testing the evolutionary stability of cheating and mutualistic strategies."
+    photo: /images/cv/yucca.jpg
+    photo_alt: "Yucca moth in yucca flower (from WikiMedia Commons)."
+  - title: "Aquatic Biology Intern"
+    org: "City of Elkhart"
+    location: "Elkhart, IN"
+    years: "2017"
+    note: "Supervisor: Daragh Deegan"
+    details:
+      - "Electrofishing surveys, macroinvertebrate sampling to assess river health, and community outreach."
+    photo: /images/cv/fish_2.jpg
+    photo_alt: "Me with a northern hogsucker."
+  - title: "Research Technician"
+    org: "Mpala Research Centre, Goshen College"
+    location: "Laikipia County, Kenya"
+    years: "2016"
+    note: "Advisor: Ryan L. Sensenig"
+    details:
+      - "Measured effects of fire on browsing by elephants and giraffes on whistling thorn, and the response of ant–acacia mutualisms to burning."
+    photo: /images/cv/elephant.jpg
+    photo_alt: "Elephants on the savanna."
+
+other_experience:
+  - title: "Mammalogy Curatorial Assistant"
+    org: "Bell Museum"
+    years: "2023"
+  - title: "Scientific Consultant"
+    org: "British Broadcasting Corporation"
+    years: "2021"
+    note: "Located coyotes for filming in the Twin Cities."
+
+awards:
+  - name: "David Tilman Research Award"
+    from: "University of Minnesota, Ecology, Evolution and Behavior"
+    years: "2022"
+  - name: "Dayton Bell Museum Fund Summer Fellowship"
+    from: "Bell Museum"
+    years: "2022"
+  - name: "Natural History Award"
+    from: "Bell Museum"
+    years: "2022"
+  - name: "James W. Wilkie Fund for Natural History Award"
+    from: "Bell Museum"
+    years: "2021"
+  - name: "Graduate Research Fellowship Program, Honorable Mention"
+    from: "National Science Foundation"
+    years: "2021"
+  - name: "EEB Summer Fellowship"
+    from: "University of Minnesota, Ecology, Evolution and Behavior"
+    years: "2020, 2021"
+  - name: "EEB Graduate Program Research Award"
+    from: "University of Minnesota, Ecology, Evolution and Behavior"
+    years: "2020"
+  - name: "Program for Excellence in Science"
+    from: "American Association for the Advancement of Science"
+    years: "2020"
+  - name: "Sustainability Scholarship"
+    from: "Air & Waste Management Association"
+    years: "2018"
+  - name: "Research Experience for Undergraduates Fellowship"
+    from: "National Science Foundation, University of Virginia"
+    years: "2018"
+  - name: "Cass County Conservation Club Scholarship"
+    from: "Cass County Conservation Club"
+    years: "2015"
+
+in_preparation:
+  - 'Miller, G. D., Jack, A. K., Forester, J. D. "A (prairie) wolf at the door: Modeling coyote (<i>Canis latrans</i>) potential distribution and overlap with native canids in South America."'
+
+outreach:
+  - text: "Manager of the Twin Cities Coyote and Fox Project website, social media, and iNaturalist project"
+    years: "2019–present"
+    link: "https://tccfp.umn.edu/"
+  - text: "Mammal survey leader, Wakan Tipi Awanyankapi Bioblitz"
+    years: "2024–2025"
+  - text: "Invited talks for nature centers and Minnesota Master Naturalist chapters"
+    years: "2021–2025"
+  - text: "Skype a Scientist: virtual visits to elementary classrooms in the US and Canada"
+    years: "2020–2021"
+  - text: "Pollinator survey volunteer, Wellfield Botanic Gardens"
+    years: "2018"

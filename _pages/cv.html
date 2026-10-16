@@ -1,0 +1,187 @@
+---
+layout: archive
+title: "CV"
+permalink: /cv/
+author_profile: true
+redirect_from:
+  - /resume
+---
+
+{% comment %}
+  Most CV content lives in _data/cv.yml.
+  Publications, presentations and teaching come from the _publications, _talks and
+  _teaching folders, so a new paper or talk shows up here automatically.
+{% endcomment %}
+
+{% assign cv = site.data.cv %}
+{% assign me = "<strong>Miller, G. D.</strong>" %}
+
+<style>
+  .cv h2 {
+    margin: 2em 0 0.6em;
+    padding-bottom: 0.3em;
+    border-bottom: 1px solid var(--global-border-color);
+    font-size: 1.15em;
+  }
+  .cv-top { display: flex; flex-wrap: wrap; align-items: center; gap: 0.6em 1.2em; font-size: 0.9em; }
+  .cv-pdf {
+    display: inline-block;
+    padding: 0.3em 0.9em;
+    border: 1px solid var(--global-link-color);
+    border-radius: 3px;
+    text-decoration: none;
+  }
+  .cv-pdf:hover { background: var(--global-link-color); color: var(--global-bg-color); }
+
+  .cv-entry {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: 0.4em 1.2em;
+    margin: 0 0 1.3em;
+  }
+  .cv-entry--photo { grid-template-columns: 1fr 11em; }
+  .cv-entry__head {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
+    gap: 0 1em;
+    margin: 0;
+    font-size: 0.95em;
+  }
+  .cv-entry__years { margin-left: auto; color: var(--global-text-color-light); white-space: nowrap; }
+  .cv-list .cv-entry__years { margin-left: 0.4em; }
+  .cv-entry__sub { margin: 0.1em 0 0; font-size: 0.85em; color: var(--global-text-color-light); }
+  .cv-entry ul { margin: 0.35em 0 0; padding-left: 1.2em; font-size: 0.85em; }
+  .cv-entry li { margin: 0.15em 0; }
+
+  .cv-photo { margin: 0; }
+  .cv-photo img {
+    display: block;
+    width: 100%;
+    aspect-ratio: 4 / 3;
+    object-fit: cover;
+    border-radius: 4px;
+  }
+  .cv-photo figcaption {
+    margin-top: 0.3em;
+    font-size: 0.7em;
+    line-height: 1.3;
+    color: var(--global-text-color-light);
+  }
+  @media (max-width: 600px) {
+    .cv-entry--photo { grid-template-columns: 1fr; }
+    .cv-photo { max-width: 18em; }
+  }
+
+  .cv-list { margin: 0; padding-left: 1.2em; font-size: 0.85em; }
+  .cv-list li { margin: 0 0 0.55em; }
+  .cv h3 { margin: 1.2em 0 0.5em; font-size: 0.95em; }
+</style>
+
+<div class="cv">
+
+<div class="cv-top">
+  <a href="mailto:mill8849@umn.edu">mill8849@umn.edu</a>
+  <span>Department of Fisheries, Wildlife and Conservation Biology, University of Minnesota</span>
+  {% if cv.pdf != blank %}<a class="cv-pdf" href="{{ cv.pdf | relative_url }}">Download PDF</a>{% endif %}
+</div>
+
+<h2>Education</h2>
+{% for e in cv.education %}
+<div class="cv-entry">
+  <div>
+    <p class="cv-entry__head"><span><strong>{{ e.degree }}</strong>, {{ e.institution }}, {{ e.location }}</span><span class="cv-entry__years">{{ e.years }}</span></p>
+    {% if e.note %}<p class="cv-entry__sub">{{ e.note }}</p>{% endif %}
+  </div>
+</div>
+{% endfor %}
+
+<h2>Research Experience</h2>
+{% for e in cv.experience %}
+<div class="cv-entry{% if e.photo %} cv-entry--photo{% endif %}">
+  <div>
+    <p class="cv-entry__head"><span><strong>{{ e.title }}</strong>, {{ e.org }}</span><span class="cv-entry__years">{{ e.years }}</span></p>
+    <p class="cv-entry__sub">{{ e.location }}{% if e.note %} · {{ e.note }}{% endif %}</p>
+    {% if e.details %}<ul>{% for d in e.details %}<li>{{ d }}</li>{% endfor %}</ul>{% endif %}
+  </div>
+  {% if e.photo %}
+  <figure class="cv-photo">
+    <img src="{{ e.photo | relative_url }}" alt="{{ e.photo_alt | escape }}" loading="lazy">
+    {% if e.photo_caption %}<figcaption>{{ e.photo_caption }}</figcaption>{% endif %}
+  </figure>
+  {% endif %}
+</div>
+{% endfor %}
+
+<h2>Publications</h2>
+{% assign pubs = site.publications | sort: "date" | reverse %}
+{% assign articles = pubs | where: "category", "manuscripts" %}
+{% assign reports = pubs | where: "category", "reports" %}
+<ol class="cv-list" reversed>
+  {% for p in articles %}
+  <li>{{ p.citation | replace: "Miller, G. D.", me | replace: "Miller, G.D.", me }}{% if p.paperurl %} <a href="{{ p.paperurl }}">Link</a>{% endif %}</li>
+  {% endfor %}
+</ol>
+{% if cv.in_preparation and cv.in_preparation.size > 0 %}
+<h3>In preparation</h3>
+<ul class="cv-list">
+  {% for p in cv.in_preparation %}<li>{{ p | replace: "Miller, G. D.", me }}</li>{% endfor %}
+</ul>
+{% endif %}
+{% if reports.size > 0 %}
+<h3>Reports</h3>
+<ul class="cv-list">
+  {% for p in reports %}
+  <li>{{ p.citation | replace: "Miller, G. D.", me }}{% if p.paperurl %} <a href="{{ p.paperurl }}">Link</a>{% endif %}</li>
+  {% endfor %}
+</ul>
+{% endif %}
+
+<h2>Presentations</h2>
+{% assign talks = site.talks | sort: "date" | reverse %}
+<ul class="cv-list">
+  {% for t in talks %}
+  {% assign a_end = t.authors | slice: -1 %}
+  {% assign t_end = t.title | slice: -1 %}
+  <li>{% if t.authors %}{{ t.authors | replace: "Miller, G. D.", me }}{% unless a_end == "." %}.{% endunless %} {% endif %}{{ t.title }}{% unless t_end == "?" or t_end == "!" or t_end == "." %}.{% endunless %} {{ t.type }}, {{ t.venue }}, {{ t.location }}, {{ t.date | date: "%B %Y" }}.</li>
+  {% endfor %}
+</ul>
+
+<h2>Teaching</h2>
+{% assign teaching = site.teaching | sort: "date" | reverse %}
+{% for t in teaching %}
+  {% if t.lectures %}
+  <h3>{{ t.title }}</h3>
+  <ul class="cv-list">
+    {% for l in t.lectures %}<li><strong>{{ l.course }}</strong>, {{ l.institution }}<span class="cv-entry__years">{{ l.terms }}</span></li>{% endfor %}
+  </ul>
+  {% endif %}
+{% endfor %}
+<h3>Teaching assistant</h3>
+<ul class="cv-list">
+  {% for t in teaching %}
+    {% if t.courses %}
+      {% for c in t.courses %}<li><strong>{{ c.course }}</strong>, {{ t.venue }}<span class="cv-entry__years">{{ c.terms }}</span></li>{% endfor %}
+    {% elsif t.lectures == nil %}
+      <li><strong>{{ t.title }}</strong>, {{ t.venue }}<span class="cv-entry__years">{{ t.terms | default: t.date | date: "%Y" }}</span></li>
+    {% endif %}
+  {% endfor %}
+</ul>
+
+<h2>Grants, Awards and Scholarships</h2>
+<ul class="cv-list">
+  {% for a in cv.awards %}<li><strong>{{ a.name }}</strong>, {{ a.from }}<span class="cv-entry__years">{{ a.years }}</span></li>{% endfor %}
+</ul>
+
+<h2>Other Professional Experience</h2>
+<ul class="cv-list">
+  {% for o in cv.other_experience %}<li><strong>{{ o.title }}</strong>, {{ o.org }}<span class="cv-entry__years">{{ o.years }}</span>{% if o.note %}<br>{{ o.note }}{% endif %}</li>{% endfor %}
+</ul>
+
+<h2>Outreach</h2>
+<ul class="cv-list">
+  {% for o in cv.outreach %}<li>{% if o.link %}<a href="{{ o.link }}">{{ o.text }}</a>{% else %}{{ o.text }}{% endif %}<span class="cv-entry__years">{{ o.years }}</span></li>{% endfor %}
+  {% if site.media %}<li>Interviews with MPR News, the Minnesota Star Tribune, Pioneer PBS, and others. See <a href="{{ '/media/' | relative_url }}">In the Media</a>.</li>{% endif %}
+</ul>
+
+</div>

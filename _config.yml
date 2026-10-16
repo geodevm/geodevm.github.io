@@ -232,6 +232,8 @@ collections:
     permalink: /:collection/:path/
   media:
     output: false
+  reports:
+    title: 'Reports'
 
 
 # These settings control how pages and collections are included in the site
