@@ -1,0 +1,207 @@
+---
+layout: archive
+title: "Photo Gallery"
+permalink: /gallery/
+author_profile: true
+---
+
+{% comment %}
+  The photos and captions come from _data/gallery.yml.
+  To add a photo, add its files to images/gallery/ and an entry to that list.
+  Nothing on this page needs to change.
+  Note: the script below uses only /* */ comments. A // comment breaks it on the live site.
+{% endcomment %}
+
+{% assign photos = site.data.gallery %}
+
+<style>
+  .gallery {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 0.5em;
+    margin: 0;
+    padding: 0;
+    list-style: none;
+  }
+  @media (max-width: 600px) {
+    .gallery { grid-template-columns: repeat(2, 1fr); }
+  }
+  .gallery li { margin: 0; }
+
+  .gallery-thumb {
+    display: block;
+    width: 100%;
+    padding: 0;
+    border: 0;
+    border-radius: 4px;
+    overflow: hidden;
+    cursor: zoom-in;
+    background: var(--global-border-color);
+    transition: transform 0.15s ease, box-shadow 0.15s ease;
+  }
+  .gallery-thumb img {
+    display: block;
+    width: 100%;
+    aspect-ratio: 1 / 1;
+    object-fit: cover;
+    transition: opacity 0.15s ease;
+  }
+  .gallery-thumb:hover, .gallery-thumb:focus-visible {
+    transform: translateY(-3px);
+    box-shadow: 0 0 0 3px var(--global-link-color), 0 6px 14px rgba(0, 0, 0, 0.25);
+    outline: none;
+  }
+  .gallery-thumb:hover img { opacity: 0.92; }
+  @media (prefers-reduced-motion: reduce) {
+    .gallery-thumb, .gallery-thumb img { transition: none; }
+    .gallery-thumb:hover, .gallery-thumb:focus-visible { transform: none; }
+  }
+
+  .lightbox {
+    width: 100vw;
+    max-width: 100vw;
+    height: 100vh;
+    max-height: 100vh;
+    margin: 0;
+    padding: 0;
+    border: 0;
+    background: transparent;
+    color: #fff;
+  }
+  .lightbox::backdrop { background: rgba(0, 0, 0, 0.88); }
+  .lightbox__stage {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    height: 100%;
+    padding: 3.5em 4.5em 1.5em;
+    box-sizing: border-box;
+  }
+  .lightbox__img {
+    display: block;
+    max-width: 100%;
+    max-height: calc(100vh - 8em);
+    width: auto;
+    height: auto;
+    object-fit: contain;
+  }
+  .lightbox__caption {
+    margin: 0.8em 0 0;
+    max-width: 50em;
+    font-size: 0.9em;
+    text-align: center;
+    color: #eee;
+  }
+  .lightbox__count { font-size: 0.75em; color: #bbb; margin: 0.3em 0 0; }
+  .lightbox__btn {
+    position: absolute;
+    font: inherit;
+    font-size: 1.4em;
+    line-height: 1;
+    width: 2.2em;
+    height: 2.2em;
+    border: 0;
+    border-radius: 50%;
+    background: rgba(255, 255, 255, 0.12);
+    color: #fff;
+    cursor: pointer;
+  }
+  .lightbox__btn:hover, .lightbox__btn:focus-visible {
+    background: rgba(255, 255, 255, 0.28);
+    outline: none;
+  }
+  .lightbox__close { top: 0.6em; right: 0.6em; }
+  .lightbox__prev { left: 0.6em; top: 50%; transform: translateY(-50%); }
+  .lightbox__next { right: 0.6em; top: 50%; transform: translateY(-50%); }
+  @media (max-width: 600px) {
+    .lightbox__stage { padding: 3.5em 0.5em 4.5em; }
+    .lightbox__prev, .lightbox__next { top: auto; bottom: 0.8em; transform: none; }
+    .lightbox__prev { left: 25%; }
+    .lightbox__next { right: 25%; }
+  }
+</style>
+
+{% if photos and photos.size > 0 %}
+<ul class="gallery">
+  {% for p in photos %}
+  <li>
+    <button type="button" class="gallery-thumb" data-index="{{ forloop.index0 }}"
+      data-full="{{ '/images/gallery/full/' | append: p.file | relative_url }}"
+      data-caption="{{ p.caption | escape }}"
+      aria-label="Open photo{% if p.alt %}: {{ p.alt | escape }}{% endif %}">
+      <img src="{{ '/images/gallery/thumbs/' | append: p.file | relative_url }}"
+        alt="{{ p.alt | escape }}" loading="lazy"
+        {% if p.focus %}style="object-position: {{ p.focus }};"{% endif %}>
+    </button>
+  </li>
+  {% endfor %}
+</ul>
+{% else %}
+<p>Photos coming soon.</p>
+{% endif %}
+
+<dialog class="lightbox" aria-label="Photo viewer">
+  <div class="lightbox__stage">
+    <img class="lightbox__img" src="" alt="">
+    <p class="lightbox__caption"></p>
+    <p class="lightbox__count"></p>
+  </div>
+  <button type="button" class="lightbox__btn lightbox__close" aria-label="Close">&times;</button>
+  <button type="button" class="lightbox__btn lightbox__prev" aria-label="Previous photo">&lsaquo;</button>
+  <button type="button" class="lightbox__btn lightbox__next" aria-label="Next photo">&rsaquo;</button>
+</dialog>
+
+<script>
+  document.addEventListener("DOMContentLoaded", function () {
+    var thumbs = Array.prototype.slice.call(document.querySelectorAll(".gallery-thumb"));
+    var box = document.querySelector(".lightbox");
+    if (!thumbs.length || !box) { return; }
+    var img = box.querySelector(".lightbox__img");
+    var caption = box.querySelector(".lightbox__caption");
+    var count = box.querySelector(".lightbox__count");
+    var prev = box.querySelector(".lightbox__prev");
+    var next = box.querySelector(".lightbox__next");
+    var current = 0;
+
+    function show(i) {
+      current = (i + thumbs.length) % thumbs.length;
+      var t = thumbs[current];
+      img.src = t.getAttribute("data-full");
+      img.alt = t.querySelector("img").alt;
+      caption.textContent = t.getAttribute("data-caption");
+      caption.hidden = !caption.textContent;
+      count.textContent = (current + 1) + " of " + thumbs.length;
+    }
+
+    thumbs.forEach(function (t, i) {
+      t.addEventListener("click", function () {
+        show(i);
+        box.showModal();
+      });
+    });
+
+    var single = thumbs.length < 2;
+    prev.hidden = single;
+    next.hidden = single;
+    prev.addEventListener("click", function () { show(current - 1); });
+    next.addEventListener("click", function () { show(current + 1); });
+    box.querySelector(".lightbox__close").addEventListener("click", function () { box.close(); });
+
+    /* Clicking the dark area around the photo closes the viewer. */
+    box.addEventListener("click", function (e) {
+      if (e.target === box || e.target.classList.contains("lightbox__stage")) { box.close(); }
+    });
+
+    box.addEventListener("keydown", function (e) {
+      if (e.key === "ArrowLeft") { show(current - 1); }
+      if (e.key === "ArrowRight") { show(current + 1); }
+    });
+
+    /* Return keyboard focus to the photo that was opened, and clear the big image. */
+    box.addEventListener("close", function () {
+      thumbs[current].focus();
+      img.removeAttribute("src");
+    });
+  });
+</script>
