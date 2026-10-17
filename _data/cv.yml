@@ -65,7 +65,7 @@ experience:
     note: "Advisor: Kyle J. Haynes"
     details:
       - "Tested host-mediated effects of artificial light at night on the feeding preferences of larval monarch butterflies."
-    photo: /images/cv/monarch.jpg
+    photo: /images/cv/monarch.JPG
     photo_alt: "Monarch caterpillar undergoing choice experiment."
   - title: "Independent Research in Game Theory"
     org: "Goshen College"
@@ -92,7 +92,7 @@ experience:
     note: "Advisor: Ryan L. Sensenig"
     details:
       - "Measured effects of fire on browsing by elephants and giraffes on whistling thorn, and the response of ant–acacia mutualisms to burning."
-    photo: /images/cv/elephant.jpg
+    photo: /images/cv/elephant.JPG
     photo_alt: "Elephants on the savanna."
 
 other_experience:
