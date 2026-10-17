@@ -5,12 +5,192 @@ permalink: /talks/
 author_profile: true
 ---
 
-{% if site.talkmap_link == true %}
+{% comment %}
+  Map of talks. Each talk in _talks/ needs either
+    latitude: and longitude:   (decimal degrees, west and south are negative)
+  or
+    virtual: true              (placed at the wreck of the Titanic)
+  Talks with neither are listed below the map instead.
 
-<p style="text-decoration:underline;"><a href="/talkmap.html">See a map of all the places I've given a talk!</a></p>
+  Basemap: CARTO Dark Matter if carto_key is set in _config.yml,
+  otherwise Esri Dark Gray, which needs no key.
 
+  The script below uses only /* */ comments. A // comment breaks it on the live site.
+{% endcomment %}
+
+{% assign talks = site.talks | sort: "date" | reverse %}
+
+<link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css"
+  integrity="sha256-p4NxAoJBhIIN+hmNHrzRCf9tD/miZyoHS5obTRR9BMY=" crossorigin="">
+
+<style>
+  .talkmap {
+    height: min(480px, 65vh);
+    min-height: 300px;
+    margin: 0.5em 0 0.4em;
+    border-radius: 6px;
+    background: #1b1d1f;
+  }
+  .talkmap-hint { margin: 0 0 1.5em; font-size: 0.8em; color: var(--global-text-color-light); }
+
+  .talk-pin {
+    width: 16px;
+    height: 16px;
+    border-radius: 50%;
+    background: #f2a541;
+    border: 2px solid #1b1d1f;
+    box-shadow: 0 0 0 2px rgba(242, 165, 65, 0.45);
+    transition: transform 0.12s ease, box-shadow 0.12s ease;
+  }
+  .talk-pin--virtual { background: #6ec6e8; box-shadow: 0 0 0 2px rgba(110, 198, 232, 0.45); }
+  .talk-pin__count {
+    display: block;
+    font: 700 9px/12px sans-serif;
+    color: #1b1d1f;
+    text-align: center;
+  }
+  .leaflet-marker-icon:hover .talk-pin,
+  .leaflet-marker-icon:focus-visible .talk-pin { transform: scale(1.35); box-shadow: 0 0 0 4px rgba(255, 255, 255, 0.35); }
+  .leaflet-marker-icon:focus-visible { outline: none; }
+  @media (prefers-reduced-motion: reduce) { .talk-pin { transition: none; } }
+
+  .leaflet-tooltip.talk-tip {
+    padding: 0.35em 0.6em;
+    border: 0;
+    border-radius: 4px;
+    background: #f4f4f4;
+    color: #1b1d1f;
+    font-size: 0.8rem;
+    line-height: 1.35;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.4);
+  }
+  .talk-tip__note { color: #555; font-style: italic; }
+  .talk-popup a { display: block; margin: 0.2em 0; }
+
+  .talks-unmapped { font-size: 0.85em; }
+</style>
+
+<div id="talkmap" class="talkmap" role="region" aria-label="Map of talk locations"></div>
+<p class="talkmap-hint">Hover over a pin to see the conference, and click it to open the talk. Pins at the site of the wreck of the Edmund Fitzgerald are virtual talks.</p>
+
+{% assign unmapped = talks | where_exp: "t", "t.virtual != true" | where_exp: "t", "t.latitude == nil" %}
+<script>
+  window.TALKS = [
+  {% for t in talks %}
+    {% if t.virtual or t.latitude %}
+    {
+      venue: {{ t.venue | jsonify }},
+      year: {{ t.date | date: "%Y" | jsonify }},
+      title: {{ t.title | jsonify }},
+      url: {{ t.url | relative_url | jsonify }},
+      virtual: {% if t.virtual %}true{% else %}false{% endif %},
+      lat: {% if t.virtual %}46.9985{% else %}{{ t.latitude }}{% endif %},
+      lng: {% if t.virtual %}-85.1100{% else %}{{ t.longitude }}{% endif %}
+    },
+    {% endif %}
+  {% endfor %}
+  ];
+  window.CARTO_KEY = {{ site.carto_key | default: "" | jsonify }};
+</script>
+
+{% if unmapped.size > 0 %}
+<div class="talks-unmapped">
+  <p>Not on the map yet:</p>
+  <ul>
+    {% for t in unmapped %}<li><a href="{{ t.url | relative_url }}">{{ t.title }}</a>, {{ t.venue }}, {{ t.date | date: "%Y" }}</li>{% endfor %}
+  </ul>
+</div>
 {% endif %}
 
-{% for post in site.talks reversed %}
-  {% include archive-single-talk.html %}
-{% endfor %}
+<script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"
+  integrity="sha256-20nQCchB9co0qIjJZRGuk2/Z9VM+kNiyxNV1lvTlZBo=" crossorigin=""></script>
+<script>
+  document.addEventListener("DOMContentLoaded", function () {
+    if (!window.L || !document.getElementById("talkmap")) { return; }
+
+    var map = L.map("talkmap", { scrollWheelZoom: false, worldCopyJump: true });
+
+    if (window.CARTO_KEY) {
+      L.tileLayer("https://{s}.basemaps.cartocdn.com/dark_all/{z}/{x}/{y}{r}.png?key=" + encodeURIComponent(window.CARTO_KEY), {
+        subdomains: "abcd",
+        maxZoom: 19,
+        attribution: "&copy; <a href=\"https://www.openstreetmap.org/copyright\">OpenStreetMap</a> contributors &copy; <a href=\"https://carto.com/attributions\">CARTO</a>"
+      }).addTo(map);
+    } else {
+      L.tileLayer("https://server.arcgisonline.com/ArcGIS/rest/services/Canvas/World_Dark_Gray_Base/MapServer/tile/{z}/{y}/{x}", {
+        maxZoom: 16,
+        attribution: "Tiles &copy; Esri, HERE, Garmin, &copy; OpenStreetMap contributors"
+      }).addTo(map);
+    }
+
+    /* Scroll-wheel zoom turns on only after the map is clicked, so scrolling the page doesn't get stuck on the map. */
+    map.on("click focus", function () { map.scrollWheelZoom.enable(); });
+    map.getContainer().addEventListener("mouseleave", function () { map.scrollWheelZoom.disable(); });
+
+    function esc(s) {
+      return String(s).replace(/[&<>"]/g, function (c) {
+        return { "&": "&amp;", "<": "&lt;", ">": "&gt;", "\"": "&quot;" }[c];
+      });
+    }
+
+    /* Talks given at the same spot share one pin. */
+    var groups = {};
+    window.TALKS.forEach(function (t) {
+      var key = t.lat.toFixed(3) + "," + t.lng.toFixed(3);
+      (groups[key] = groups[key] || []).push(t);
+    });
+
+    var bounds = [];
+    var markers = [];
+    Object.keys(groups).forEach(function (key) {
+      var list = groups[key];
+      var first = list[0];
+      var many = list.length > 1;
+
+      var icon = L.divIcon({
+        className: "",
+        html: "<div class=\"talk-pin" + (first.virtual ? " talk-pin--virtual" : "") + "\">" +
+              (many ? "<span class=\"talk-pin__count\">" + list.length + "</span>" : "") + "</div>",
+        iconSize: [16, 16],
+        iconAnchor: [8, 8]
+      });
+
+      var label = list.map(function (t) {
+        return esc(t.venue) + ", " + esc(t.year) + (t.virtual ? " <span class=\"talk-tip__note\">(virtual)</span>" : "");
+      }).join("<br>");
+
+      var marker = L.marker([first.lat, first.lng], { icon: icon, keyboard: true }).addTo(map);
+      marker.ariaLabel = list.map(function (t) { return t.venue + ", " + t.year + (t.virtual ? " (virtual)" : ""); }).join("; ");
+      markers.push(marker);
+
+      marker.bindTooltip(label, { direction: "top", offset: [0, -10], className: "talk-tip" });
+
+      if (many) {
+        marker.bindPopup("<div class=\"talk-popup\">" + list.map(function (t) {
+          return "<a href=\"" + esc(t.url) + "\">" + esc(t.venue) + ", " + esc(t.year) + "</a>";
+        }).join("") + "</div>");
+      } else {
+        marker.on("click", function () { window.location.href = first.url; });
+        marker.on("keypress", function (e) {
+          if (e.originalEvent.key === "Enter") { window.location.href = first.url; }
+        });
+      }
+
+      bounds.push([first.lat, first.lng]);
+    });
+
+    if (bounds.length > 1) {
+      map.fitBounds(bounds, { padding: [40, 40], maxZoom: 6 });
+    } else if (bounds.length === 1) {
+      map.setView(bounds[0], 5);
+    } else {
+      map.setView([39, -60], 3);
+    }
+
+    /* Label each pin for screen readers. Pins exist only once the map has a view. */
+    markers.forEach(function (m) {
+      var el = m.getElement();
+      if (el) { el.setAttribute("role", "button"); el.setAttribute("aria-label", m.ariaLabel); }
+    });
+  });
+</script>

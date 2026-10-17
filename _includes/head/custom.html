@@ -14,4 +14,24 @@
 <link rel="icon" href="/images/favicon.ico"/>
 <meta name="theme-color" content="#ffffff"/>
 
+<!-- Background photo. To change it, replace images/background.jpg. To remove it, delete this block. -->
+<style>
+  body { background-color: transparent; padding-bottom: 3.5em }
+  body::before {
+    content: "";
+    position: fixed;
+    inset: 0;
+    z-index: -1;
+    background-image: url("{{ base_path }}/images/background.jpg");
+    background-size: cover;
+    background-position: center;
+  }
+  #main {
+    padding-top: 1.5em;
+    padding-bottom: 1.5em;
+    border-radius: 6px;
+    background-color: color-mix(in srgb, var(--global-bg-color) 85%, transparent);
+  }
+</style>
+
 <!-- end custom head snippets -->

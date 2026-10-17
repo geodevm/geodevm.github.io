@@ -5,7 +5,11 @@ type: "Oral presentation"
 permalink: /talks/2024-glesa-canis-vulpes
 venue: "Great Lakes Chapter of the Ecological Society of America"
 date: 2024-04-06
-location: "Kalamazoo, MI, USA"
+location: "Kalamazoo, MI"
+location: "Athens, GA"
+authors: "Miller, G. D., McCann, N. P., Forester, J. D., Craft, M. E."
+latitude: 42.2917          # Kalamazoo, MI
+longitude: -85.5872
 ---
 
 Urban landscapes present novel scenarios for wildlife to navigate, with much of the novelty arising from both the alteration of landscapes to serve human use cases and direct use of natural areas for recreation. To examine how human activity in urban landscapes affects the movement behaviors of multiple carnivores in an urban system, we GPS-collared 17 coyotes (*Canis latrans*) and 16 red foxes (*Vulpes vulpes*) in the Twin Cities Metropolitan Area (TCMA) of Minnesota between 2019–2024. To assess habitat selection patterns of individual animals, we fit resource selection functions (RSFs) with various covariates to determine second-order habitat selection (i.e., selection of territories), and step-selection functions (SSFs) to assess third-order habitat selection within home ranges. Across all seasons, coyotes established home ranges in areas of relatively low development (i.e., with lower relative road density), while red foxes were found to inhabit home ranges with more residential zoning and higher road density. However, within their home ranges, both species showed selection for  areas of the landscape associated with relatively lower human use. Increases in the most urban-dwelling coyotes’ selection for non-residential areas and wetlands in the spring highlight the importance of urban wetlands for mitigating risk of human–wildlife conflict during the pup-rearing season. While coyotes occupied mainly larger greenspaces or networks of greenspaces, red foxes often selected areas with smaller green spaces within residential areas. Differences in where coyotes and red foxes choose to establish home ranges and what parts of those home ranges they display highest selection for suggests that minimizing the likelihood of encountering coyotes may be a primary driver of habitat suitability for red foxes. Furthermore, availability of residential areas is likely one of the most important factors allowing for the coexistence of coyotes and red foxes in the TCMA.
