@@ -105,6 +105,9 @@ other_experience:
     note: "Located coyotes for filming in the Twin Cities."
 
 awards:
+  - name: "Pilot Sequencing Program"
+    from: "University of Minnesota Genomics Center"
+    years: "2024"
   - name: "David Tilman Research Award"
     from: "University of Minnesota, Ecology, Evolution and Behavior"
     years: "2022"
