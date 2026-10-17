@@ -37,3 +37,6 @@ main:
 
   - title: "Photos"
     url: /gallery/
+
+  - title: "Resources"
+    url: /resources/

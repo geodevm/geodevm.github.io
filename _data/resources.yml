@@ -1,0 +1,24 @@
+# Items on the Resources page, shown in this order.
+#
+# For a map or other HTML embed:
+#   1. Save it as one self-contained .html file. In R:
+#        htmlwidgets::saveWidget(m, "my_map.html", selfcontained = TRUE)
+#      In Python (folium):  m.save("my_map.html")
+#   2. Put the file in the maps/ folder of the repository (no underscore in front).
+#   3. Add an entry below with  embed: /maps/my_map.html
+#
+# For a plain link (a dataset, a PDF in files/, another website), use  link:  instead of embed.
+#
+# Fields:
+#   title:        heading (required)
+#   description:  a sentence or two about it (optional)
+#   embed:        path to an HTML file to show in a window on the page (optional)
+#   height:       height of that window in pixels (optional, default 450)
+#   link:         a web address or file to link to (optional)
+#   link_text:    text for that link (optional, default "Open")
+#   updated:      date it was last updated, e.g. 2026-10-16 (optional)
+
+- title: "Municipalities with coyote encounter probability on trails"
+  description: "Click on a muncipality to view a coyote encounter risk within that area, with percentiles given relative to the rest of the Twin Cities Metropolitan Area."   # replace with what the map shows
+  embed: https://geodevm.github.io/risk_maps/options/
+  height: 450

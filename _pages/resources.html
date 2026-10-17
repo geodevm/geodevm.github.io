@@ -1,0 +1,51 @@
+---
+layout: archive
+title: "Resources"
+permalink: /resources/
+author_profile: true
+---
+
+{% comment %}
+  The items on this page come from _data/resources.yml.
+  Map files go in the maps/ folder and are shown here in an iframe, which keeps
+  their code separate from the rest of the site.
+{% endcomment %}
+
+<style>
+  .resource { margin: 0 0 2.2em; }
+  .resource__title { margin: 0 0 0.25em; font-size: 1.15em; }
+  .resource__desc { margin: 0 0 0.6em; font-size: 0.9em; }
+  .resource__frame {
+    display: block;
+    width: 100%;
+    border: 1px solid var(--global-border-color);
+    border-radius: 4px;
+    background: var(--global-border-color);
+  }
+  .resource__meta {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.4em 1em;
+    margin-top: 0.4em;
+    font-size: 0.8em;
+    color: var(--global-text-color-light);
+  }
+</style>
+
+{% for r in site.data.resources %}
+<section class="resource">
+  <h2 class="resource__title">{{ r.title }}</h2>
+  {% if r.description %}<p class="resource__desc">{{ r.description }}</p>{% endif %}
+
+  {% if r.embed %}
+  <iframe class="resource__frame" src="{{ r.embed | relative_url }}" title="{{ r.title | escape }}"
+    style="height: {{ r.height | default: 450 }}px;" loading="lazy" allowfullscreen></iframe>
+  {% endif %}
+
+  <div class="resource__meta">
+    {% if r.embed %}<a href="{{ r.embed | relative_url }}" target="_blank" rel="noopener">Open full screen</a>{% endif %}
+    {% if r.link %}<a href="{{ r.link | relative_url }}">{{ r.link_text | default: "Open" }}</a>{% endif %}
+    {% if r.updated %}<span>Updated {{ r.updated | date: "%B %-d, %Y" }}</span>{% endif %}
+  </div>
+</section>
+{% endfor %}
