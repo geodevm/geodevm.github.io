@@ -43,7 +43,40 @@
   .page__footer {
     position: static;
     margin-top: 0;
+    margin-bottom: 75vh;
   }
 </style>
+
+<!-- Sidebar: scrolls with the panel instead of being pinned to the window, so it can't overlap the footer. -->
+<style>
+  @media screen and (min-width: 1024px) {
+    .sidebar {
+      position: sticky;
+      top: var(--sidebar-top, 70px);
+      height: auto;
+      max-height: none;
+      overflow: visible;
+      padding-top: 0;
+    }
+  }
+</style>
+<script>
+  (function () {
+    /* If the sidebar is taller than the window, let it scroll until its bottom is in view, then hold it there. */
+    function fit() {
+      var s = document.querySelector(".sidebar");
+      if (!s) { return; }
+      var top = Math.min(70, window.innerHeight - s.offsetHeight - 16);
+      s.style.setProperty("--sidebar-top", top + "px");
+    }
+    document.addEventListener("DOMContentLoaded", function () {
+      fit();
+      var s = document.querySelector(".sidebar");
+      if (s && window.ResizeObserver) { new ResizeObserver(fit).observe(s); }
+      window.addEventListener("resize", fit);
+      window.addEventListener("load", fit);
+    });
+  })();
+</script>
 
 <!-- end custom head snippets -->
