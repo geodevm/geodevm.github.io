@@ -1,39 +1,24 @@
 ---
 permalink: /
-title: "Geoff Miller, PhD"
+title: "About Me"
 author_profile: true
 redirect_from: 
   - /about/
   - /about.html
 ---
 
-This is my website.
- This is how to insert a link: [Academic Pages template](https://github.com/academicpages/academicpages.github.io). 
+Pleistocene mammals watched over generations as North American ice sheets receded at a glacial pace. Even in a world of change through freeze and thaw, nothing could have prepared them for the changes that affect their lives today. Over the last few generations of their lineage, the pace of change has quickened. They have seen jets scream overhead, and speed has literally been the death of millions of them on the expressways that cut across lands that previously knew no such hazards.
 
- This is how to creat a heading
-======
+Some animals have not done well in this Anthropocene age, and they righfully receive most conservation attention. I do, however, find myself drawn to those who are thriving—like coyotes. Coyotes were likely urban dwellers alongside the Aztecs long before their current infamy as an urban tolerator. Despite Europeans' best efforts to erradicate them through poison and bounties, they spread from their historic home in the western U.S. to every corner of the North American continent—including many cities.
 
-You can also write scripts that process the structured data on the site, such as [this one](https://github.com/academicpages/academicpages.github.io/blob/master/talkmap.ipynb) that analyzes metadata in pages about talks to display [a map of every location you've given a talk](https://academicpages.github.io/talkmap.html).
+Not only am I fascinated by these species that tolerate the stessors of the modern age, they are set to inherit and shape the ecosystems of the future as movers and shakers. They may be the ones to tip vulnerable prey or competitors over the edge. Understanding what makes these animals resilient animals tick is essential to understanding the ecosystems of the 21st century.
 
-For those users that need more advanced functionality, the template also supports the following popular tools:
-- [Plotly](https://plotly.com/javascript/) for plotting
-
-
-
-Here's a subheading
+My Research
 ------
-The main configuration file for the site is in the base directory in [_config.yml](https://github.com/academicpages/academicpages.github.io/blob/master/_config.yml), which defines the content in the sidebars and other site-wide features. You will need to replace the default variables with ones about yourself and your site's github repository. The configuration file for the top menu is in [_data/navigation.yml](https://github.com/academicpages/academicpages.github.io/blob/master/_data/navigation.yml). For example, if you don't have a portfolio or blog posts, you can remove those items from that navigation.yml file to remove them from the header. 
 
-Create content & metadata
-------
-For site content, there is one Markdown file for each type of content, which are stored in directories like _publications, _talks, _posts, _teaching, or _pages. For example, each talk is a Markdown file in the [_talks directory](https://github.com/academicpages/academicpages.github.io/tree/master/_talks). At the top of each Markdown file is structured data in YAML about the talk, which the theme will parse to do lots of cool stuff. The same structured data about a talk is used to generate the list of talks on the [Talks page](https://academicpages.github.io/talks), each [individual page](https://academicpages.github.io/talks/2012-03-01-talk-1) for specific talks, the talks section for the [CV page](https://academicpages.github.io/cv), and the [map of places you've given a talk](https://academicpages.github.io/talkmap.html) (if you run this [python file](https://github.com/academicpages/academicpages.github.io/blob/master/talkmap.py) or [Jupyter notebook](https://github.com/academicpages/academicpages.github.io/blob/master/talkmap.ipynb), which creates the HTML for the map based on the contents of the _talks directory).
+My primary work has been working with [coyotes and red foxes across the Twin Cities Metropolitan Area](https://github.com/academicpages/academicpages.github.io) to understand how humans affect the interactions between these two species. Coyotes dominate green spaces in this study area, seemingly pushing red foxes to become residential specialists in a "human shield" effect. Foxes often den under sheds decks while raising their young, and will not hesitate to alert the local human if coyotes are seen anywhere nearby.
 
-**Further subheading/bold**
+However, my interst in coyotes is not limited to this system. I have also worked to model their effects on other small canids at a seemingly expanding front of their distribution: South America. Coyotes may make moves into the continent in the next few decades, and it would be prescient to know what their impacts may be.
 
-The repository includes [a set of Jupyter notebooks](https://github.com/academicpages/academicpages.github.io/tree/master/markdown_generator
-) that converts a CSV containing structured data about talks or presentations into individual Markdown files that will be properly formatted for the Academic Pages template. The sample CSVs in that directory are the ones I used to create my own personal website at stuartgeiger.com. My usual workflow is that I keep a spreadsheet of my publications and talks, then run the code in these notebooks to generate the Markdown files, then commit and push them to the GitHub repository.
-
-Example: Insert image
-![Editing a Markdown file for a talk](/images/editing-talk.png)
-
+I am open to collaborations of all shapes and sizes. Reach out by email, I would be happy to chat about coyotes or any other intersection with my interest in the species of tomorrow's ecosystems.
 
