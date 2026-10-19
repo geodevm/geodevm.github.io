@@ -9,7 +9,7 @@ redirect_from:
 
 I am a researcher at the University of Minnesota working in the [Forester Lab](https://foresterlab.cfans.umn.edu/). Although I currently work with canids and mammals more generally, I am interested in all aspects of ecological interactions. Many of my clearest early memories are visiting ecosystems besides the one I grew up in in rural southern Michigan and seeing new birds, mammals or insects, or catching strange fish in new waters. From an early age, I remember asking myself questions about why I find species in certain places and not others. I find that basic question driving my interests to this day, across spatial scales and over time. How species interactions and human activities drive the fine-scale distribution of mammals has been my most recent exploration of this topic, though many more questions interest me deeply.
 
-On top of my research interests, a related passion is nature photography. The photography tab on the navigation bar above to see some of my work!
+On top of my research interests, a related passion is nature photography. Check out the photography tab on the navigation bar above to see some of my work!
 
 My Research
 ------
