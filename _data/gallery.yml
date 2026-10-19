@@ -29,10 +29,6 @@
   caption: "Sunset on the Ucayali River, Peru."
   alt: "Sunset on the Ucayali River, Peru."
 
-- file: angels-landing.jpg
-  caption: "Angels' Landing, Zion National Park."
-  alt: "Angels' Landing, Zion National Park."
-
 - file: bad-buck.jpg
   caption: "Large buck in Velvet in Roseville, MN."
   alt: "Large buck in Velvet in Roseville, MN."  
@@ -93,33 +89,17 @@
   caption: "UMN St. Paul campus, St. Paul, MN."
   alt: "UMN St. Paul campus, St. Paul, MN."
 
-- file: campus-skyline-3.jpg
-  caption: "UMN St. Paul campus, St. Paul, MN."
-  alt: "UMN St. Paul campus, St. Paul, MN."
-
 - file: chippy.jpg
   caption: "Eastern chipmunk in St. Paul, MN."
   alt: "Eastern chipmunk in St. Paul, MN."
-
-- file: chips.jpg
-  caption: "Interesting view of work site in St. Paul, MN."
-  alt: "Interesting view of work site in St. Paul, MN."
 
 - file: city-coy.jpg
   caption: "Coyote in St. Paul, MN, with Minneapolis skyline in background."
   alt: "Coyote in St. Paul, MN, with Minneapolis skyline in background."
 
-- file: city-coy-2.jpg
-  caption: "Coyote in St. Paul, MN, with graffiti in background."
-  alt: "Coyote in St. Paul, MN, with graffiti in background."
-
 - file: city-coy-3.jpg
   caption: "Coyote in St. Paul, MN, with Minneapolis skyline in background."
   alt: "Coyote in St. Paul, MN, with Minneapolis skyline in background."
-
-- file: city-fox.jpg
-  caption: "Red fox in Bloomington, MN."
-  alt: "Red fox in Bloomington, MN."
 
 - file: cityscape.jpg
   caption: "Sunset in St. Paul, MN."
@@ -249,10 +229,6 @@
   caption: "Ag research plots in St. Paul, MN."
   alt: "Ag research plots in St. Paul, MN."
 
-- file: file-7.jpg
-  caption: "Posing with a BEAUTIFUL northern hogsucker, Elkhart, IN."
-  alt: "Posing with a BEAUTIFUL northern hogsucker, Elkhart, IN."
-
 - file: flower-coy-1.jpg
   caption: "Coyote in St. Paul, MN."
   alt: "Coyote in St. Paul, MN."
@@ -265,30 +241,6 @@
   caption: "Coyote in St. Paul, MN."
   alt: "Coyote in St. Paul, MN."
 
-- file: ford-coy-2.jpg
-  caption: "Coyote in St. Paul, MN."
-  alt: "Coyote in St. Paul, MN."
-
-- file: ford-coy-3.jpg
-  caption: "Coyote in St. Paul, MN."
-  alt: "Coyote in St. Paul, MN."
-
-- file: ford-coy-4.jpg
-  caption: "Coyote in St. Paul, MN."
-  alt: "Coyote in St. Paul, MN."
-
-- file: ford-coy-5.jpg
-  caption: "Coyote in St. Paul, MN."
-  alt: "Coyote in St. Paul, MN."
-
-- file: ford-coy-6.jpg
-  caption: "Coyote in St. Paul, MN."
-  alt: "Coyote in St. Paul, MN."
-
-- file: forest-coy.jpg
-  caption: "Coyote in St. Paul, MN."
-  alt: "Coyote in St. Paul, MN."
-
 - file: fox.jpg
   caption: "Red fox kit in Bloomington, MN."
   alt: "Red fox kit in Bloomington, MN."
@@ -296,10 +248,6 @@
 - file: fox-adult.jpg
   caption: "Red fox in Bloomington, MN."
   alt: "Red fox in Bloomington, MN."
-
-- file: frog.jpg
-  caption: "Unknown frog species at Zion National Park."
-  alt: "Unknown frog species at Zion National Park."
 
 - file: fruits-of-temptation.jpg
   caption:  "Unknown parakeet species in Dehradun, India."
@@ -324,14 +272,6 @@
 - file: good-boy-coy.jpg
   caption: "Coyote in St. Paul, MN."
   alt: "Coyote in St. Paul, MN."
-
-- file: gray-fox-1.jpg
-  caption: "Carrying a gray fox to processing site, Coon Rapids, MN."
-  alt: "Carrying a gray fox to processing site, Coon Rapids, MN."
-
-- file: gray-fox.jpg
-  caption: "Gray fox during processing, Coon Rapids, MN."
-  alt: "Gray fox during processing, Coon Rapids, MN."
 
 - file: green-heron-catch.jpg
   caption: "Green heron fishing in St. Louis Park, MN."
@@ -421,19 +361,7 @@
   caption: "Sunset with rain on the Ucayali River, Peru."
   alt: "Sunset with rain on the Ucayali River, Peru."
 
-- file: img-8991.jpg
-  caption: "Mouthbreathing due to my awe of what this brown trout ate, Elkhart, IN."
-  alt: "Mouthbreathing due to my awe of what this brown trout ate, Elkhart, IN."
-
-- file: img-9775.jpg
-  caption: "View of the Badlands with bighorns, Badlands National Park."
-  alt: "View of the Badlands with bighorns, Badlands National Park."
-
 - file: img-9872.jpg
-  caption: "Bighorn ram in Yellowstone National Park."
-  alt: "Bighorn ram in Yellowstone National Park."
-
-- file: img-9876-2.jpg
   caption: "Bighorn ram in Yellowstone National Park."
   alt: "Bighorn ram in Yellowstone National Park."
 
@@ -454,10 +382,6 @@
   alt: "Landscape with junipers, Zion National Park."
 
 - file: koy-coy.jpg
-  caption: "Coyote in St. Paul, MN."
-  alt: "Coyote in St. Paul, MN."
-
-- file: koy-coy-2.jpg
   caption: "Coyote in St. Paul, MN."
   alt: "Coyote in St. Paul, MN."
 
@@ -546,10 +470,6 @@
   alt: "Muskrat on the Minnehaha, Minneapolis, MN."
 
 - file: nsfw-snappers-1.jpg
-  caption: "Snapping turtles in love, Minnesota Valley National Wildlife Refuge."
-  alt: "Snapping turtles in love, Minnesota Valley National Wildlife Refuge."
-
-- file: nsfw-snappers-2.jpg
   caption: "Snapping turtles in love, Minnesota Valley National Wildlife Refuge."
   alt: "Snapping turtles in love, Minnesota Valley National Wildlife Refuge."
 
