@@ -20,9 +20,9 @@ Some animals have not done well in this Anthropocene age, and they righfully rec
 
 Not only am I fascinated by these species that tolerate the stessors of the modern age, they are set to inherit and shape the ecosystems of the future as movers and shakers. They may be the ones to tip vulnerable prey or competitors over the edge. Understanding what makes these animals resilient animals tick is essential to understanding the ecosystems of the 21st century and beyond.
 
-My primary work has been working with [coyotes and red foxes across the Twin Cities Metropolitan Area](https://github.com/academicpages/academicpages.github.io) to understand how humans affect the interactions between these two species. Coyotes dominate green spaces in this study area, seemingly pushing red foxes to become residential specialists in a "human shield" effect. Foxes often den under sheds decks while raising their young, and will not hesitate to alert the local human if coyotes are seen anywhere nearby.
+My primary work has been working with [coyotes and red foxes across the Twin Cities Metropolitan Area](https://tccfp.umn.edu) to understand how humans affect the interactions between these two species. Coyotes dominate green spaces in this study area, seemingly pushing red foxes to become residential specialists in a "human shield" effect. Foxes often den under sheds decks while raising their young, and will not hesitate to alert the local human if coyotes are seen anywhere nearby.
 
-However, my interst in coyotes is not limited to this system. I have also worked to model their effects on other small canids at a seemingly expanding front of their distribution: South America. Coyotes may make moves into the continent in the next few decades, and it would be prescient to know what their impacts may be.
+However, my interest in coyotes is not limited to this system. I have also worked to model their effects on other small canids at a seemingly expanding front of their distribution: South America. Coyotes may make moves into the continent in the next few decades, and it would be prescient to know what their impacts may be.
 
 I am open to collaborations of all shapes and sizes. Reach out by email, I would be happy to chat about coyotes or any other intersection with my interest in the species of tomorrow's ecosystems.
 
